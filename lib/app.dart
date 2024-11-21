@@ -1,5 +1,4 @@
 import 'package:flutter_pos/core/config/database/realm_database.dart';
-import 'package:flutter_pos/core/errors/failures.dart';
 import 'package:flutter_pos/injector.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
