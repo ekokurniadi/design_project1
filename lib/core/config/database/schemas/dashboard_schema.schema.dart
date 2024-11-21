@@ -1,7 +1,7 @@
 import 'package:flutter_pos/modules/ronpos/features/dashboard/data/models/dashboard_model.codegen.dart';
 import 'package:realm/realm.dart';
 
-part 'dashboard_schema.realm.dart';
+part 'dashboard_schema.schema.realm.dart';
 
 @RealmModel()
 class _DashboardSchema {

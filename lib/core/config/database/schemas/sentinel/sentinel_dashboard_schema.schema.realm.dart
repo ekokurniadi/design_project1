@@ -1,23 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dashboard_schema.dart';
+part of 'sentinel_dashboard_schema.schema.dart';
 
 // **************************************************************************
 // RealmObjectGenerator
 // **************************************************************************
 
 // ignore_for_file: type=lint
-class DashboardSchema extends _DashboardSchema
+class SentinelDashboardSchema extends _SentinelDashboardSchema
     with RealmEntity, RealmObjectBase, RealmObject {
-  DashboardSchema(
-    int id, {
+  SentinelDashboardSchema(
+    int id,
+    int terminalId, {
     String? mode,
   }) {
     RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set(this, 'mode', mode);
+    RealmObjectBase.set(this, 'terminalId', terminalId);
   }
 
-  DashboardSchema._();
+  SentinelDashboardSchema._();
 
   @override
   int get id => RealmObjectBase.get<int>(this, 'id') as int;
@@ -30,34 +32,42 @@ class DashboardSchema extends _DashboardSchema
   set mode(String? value) => RealmObjectBase.set(this, 'mode', value);
 
   @override
-  Stream<RealmObjectChanges<DashboardSchema>> get changes =>
-      RealmObjectBase.getChanges<DashboardSchema>(this);
+  int get terminalId => RealmObjectBase.get<int>(this, 'terminalId') as int;
+  @override
+  set terminalId(int value) => RealmObjectBase.set(this, 'terminalId', value);
 
   @override
-  Stream<RealmObjectChanges<DashboardSchema>> changesFor(
+  Stream<RealmObjectChanges<SentinelDashboardSchema>> get changes =>
+      RealmObjectBase.getChanges<SentinelDashboardSchema>(this);
+
+  @override
+  Stream<RealmObjectChanges<SentinelDashboardSchema>> changesFor(
           [List<String>? keyPaths]) =>
-      RealmObjectBase.getChangesFor<DashboardSchema>(this, keyPaths);
+      RealmObjectBase.getChangesFor<SentinelDashboardSchema>(this, keyPaths);
 
   @override
-  DashboardSchema freeze() =>
-      RealmObjectBase.freezeObject<DashboardSchema>(this);
+  SentinelDashboardSchema freeze() =>
+      RealmObjectBase.freezeObject<SentinelDashboardSchema>(this);
 
   EJsonValue toEJson() {
     return <String, dynamic>{
       'id': id.toEJson(),
       'mode': mode.toEJson(),
+      'terminalId': terminalId.toEJson(),
     };
   }
 
-  static EJsonValue _toEJson(DashboardSchema value) => value.toEJson();
-  static DashboardSchema _fromEJson(EJsonValue ejson) {
+  static EJsonValue _toEJson(SentinelDashboardSchema value) => value.toEJson();
+  static SentinelDashboardSchema _fromEJson(EJsonValue ejson) {
     if (ejson is! Map<String, dynamic>) return raiseInvalidEJson(ejson);
     return switch (ejson) {
       {
         'id': EJsonValue id,
+        'terminalId': EJsonValue terminalId,
       } =>
-        DashboardSchema(
+        SentinelDashboardSchema(
           fromEJson(id),
+          fromEJson(terminalId),
           mode: fromEJson(ejson['mode']),
         ),
       _ => raiseInvalidEJson(ejson),
@@ -65,12 +75,13 @@ class DashboardSchema extends _DashboardSchema
   }
 
   static final schema = () {
-    RealmObjectBase.registerFactory(DashboardSchema._);
+    RealmObjectBase.registerFactory(SentinelDashboardSchema._);
     register(_toEJson, _fromEJson);
-    return const SchemaObject(
-        ObjectType.realmObject, DashboardSchema, 'DashboardSchema', [
+    return const SchemaObject(ObjectType.realmObject, SentinelDashboardSchema,
+        'SentinelDashboardSchema', [
       SchemaProperty('id', RealmPropertyType.int, primaryKey: true),
       SchemaProperty('mode', RealmPropertyType.string, optional: true),
+      SchemaProperty('terminalId', RealmPropertyType.int),
     ]);
   }();
 

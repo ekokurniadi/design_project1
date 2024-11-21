@@ -19,6 +19,9 @@ targets:
             - core/**.codegen.dart
         options:
           field_rename: snake
+      realm_generator:realm_generator:
+        generate_for:
+            - core/**.schema.dart 
       freezed:freezed:
         options:
           make_collections_unmodifiable: false

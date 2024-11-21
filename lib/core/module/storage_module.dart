@@ -13,8 +13,8 @@ abstract class StorageModule {
   @singleton
   Realm get realm {
     final config = Configuration.local(
-      schemas,
-      schemaVersion: schemas.length,
+      getSchemas,
+      schemaVersion: getSchemas.length,
     );
     return Realm(config);
   }

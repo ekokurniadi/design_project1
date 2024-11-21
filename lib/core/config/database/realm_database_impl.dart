@@ -12,9 +12,9 @@ class RealmDatabaseImpl implements RealmDatabase {
   final Realm _realm;
 
   @override
-  FutureOr<Either<Failures, T>> add<T extends RealmObject>(T item) {
+  Future<Either<Failures, T>> add<T extends RealmObject>(T item) async {
     try {
-      final result = _realm.write(() => _realm.add(item));
+      final result =  await _realm.writeAsync(() => _realm.add(item));
       return right(result);
     } catch (e) {
       return left(DatabaseFailure(errorMessage: e.toString()));
@@ -37,7 +37,7 @@ class RealmDatabaseImpl implements RealmDatabase {
   }
 
   @override
-  T? find<T extends RealmObject, P>(P primaryKey) {
+  T? find<T extends RealmObject, Param>(Param primaryKey) {
     return _realm.find<T>(primaryKey);
   }
 
@@ -47,9 +47,14 @@ class RealmDatabaseImpl implements RealmDatabase {
   }
 
   @override
-  FutureOr<Either<Failures, T>> update<T extends RealmObject>(T item) {
+  Future<Either<Failures, T>> update<T extends RealmObject>(T item) async {
     try {
-      final result = _realm.write(() => _realm.add(item,update: true));
+      final result = await _realm.writeAsync(
+        () => _realm.add(
+          item,
+          update: true,
+        ),
+      );
       return right(result);
     } catch (e) {
       return left(DatabaseFailure(errorMessage: e.toString()));

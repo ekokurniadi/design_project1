@@ -1,3 +1,4 @@
+import 'package:flutter_pos/modules/ronpos/features/dashboard/domain/entities/dashboard_entity.codegen.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dashboard_model.codegen.freezed.dart';
@@ -14,4 +15,8 @@ class DashboardModel with _$DashboardModel{
       _$DashboardModelFromJson(json);
 }
 
+
+extension DashboardModelX on DashboardModel {
+  DashboardEntity toEntity()=> DashboardEntity(id: id, appMode: appMode);
+}
 
