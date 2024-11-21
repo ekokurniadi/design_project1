@@ -100,4 +100,4 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
 lint_staged:
-  'lib/**/**.dart': dart format && dart analyze --fatal-infos --fatal-warnings
+  'lib/**.dart': dart format && dart analyze --fatal-infos --fatal-warnings
