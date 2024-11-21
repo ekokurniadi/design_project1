@@ -32,14 +32,3 @@ class UnexpectedFailure extends Failures {
   @override
   List<Object> get props => [errorMessage];
 }
-
-class IniAdalahnamaclassyangsangatpanjangsekalidansangatsulituntukdibacaolehdeveloperlainkokgakjalansihcok
-    extends Failures {
-  IniAdalahnamaclassyangsangatpanjangsekalidansangatsulituntukdibacaolehdeveloperlainkokgakjalansihcok(
-      {required this.errorMessage});
-  @override
-  final String errorMessage;
-
-  @override
-  List<Object> get props => [errorMessage];
-}
