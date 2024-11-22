@@ -5,10 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 sealed class TestHelper {
   static Future<void> setupAll() async {
-  SharedPreferences.setMockInitialValues({});
-  await dotenv.load();
-  await configureDependencies(environment: Environment.dev);
+    SharedPreferences.setMockInitialValues({});
+    await dotenv.load();
+    await configureDependencies(environment: Environment.dev);
+  }
 }
-}
-
-
