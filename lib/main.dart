@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_pos/app.dart';
+import 'package:flutter_pos/core/config/database/realm_database.dart';
+import 'package:flutter_pos/injector.dart';
 
 Future<void> main() async {
-  await dotenv.load();
+  await App.init();
   runApp(const MyApp());
 }
 
@@ -66,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    App.realm.dispose();
+    getIt<RealmDatabase>().dispose();
     super.dispose();
   }
 
