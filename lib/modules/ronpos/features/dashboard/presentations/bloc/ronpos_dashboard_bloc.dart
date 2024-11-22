@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_pos/core/helpers/internet_helper.dart';
-import 'package:flutter_pos/injector.dart';
 import 'package:flutter_pos/modules/ronpos/features/dashboard/data/models/dashboard_model.codegen.dart';
 import 'package:flutter_pos/modules/ronpos/features/dashboard/domain/entities/dashboard_entity.codegen.dart';
 import 'package:flutter_pos/modules/ronpos/features/dashboard/domain/usecases/get_dashboard_data_from_remote_usecase.dart';
@@ -22,6 +20,7 @@ class RonposDashboardBloc
     this._getDashboardDataUsecase,
   ) : super(RonposDashboardState.initial()) {
     on<_GetDashboardByIdEvent>(_onGetDashboardById);
+    on<_GetDashboardFromRemoteByIdEvent>(_onGetDashboardFromRemoteById);
   }
 
   FutureOr<void> _onGetDashboardById(
@@ -30,9 +29,31 @@ class RonposDashboardBloc
   ) async {
     emit(state.copyWith(status: DasboardState.loading));
 
-    final result = await getIt<InternetHelper>().isConnected
-        ? await _getDashboardDataFromRemoteUsecase(event.id)
-        : await _getDashboardDataUsecase(event.id);
+    final result = await _getDashboardDataUsecase(event.id);
+
+    result.fold(
+      (l) => emit(
+        state.copyWith(
+          status: DasboardState.failure,
+          message: l.errorMessage,
+        ),
+      ),
+      (r) => emit(
+        state.copyWith(
+          status: DasboardState.loaded,
+          dashboardData: r.toEntity(),
+        ),
+      ),
+    );
+  }
+
+  FutureOr<void> _onGetDashboardFromRemoteById(
+    _GetDashboardFromRemoteByIdEvent event,
+    Emitter<RonposDashboardState> emit,
+  ) async {
+    emit(state.copyWith(status: DasboardState.loading));
+
+    final result = await _getDashboardDataFromRemoteUsecase(event.id);
 
     result.fold(
       (l) => emit(

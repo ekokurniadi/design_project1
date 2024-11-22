@@ -7,7 +7,7 @@ import 'package:flutter_pos/modules/ronpos/features/dashboard/presentations/bloc
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../../../../helpers/test_helper.dart';
+import '../../../../../../helpers/helper.dart';
 import '../../../../../../mocks.mocks.dart';
 
 void main() {
@@ -34,58 +34,126 @@ void main() {
     test('initial state is correct', () {
       expect(sut.state.status, DasboardState.initial);
     });
-    blocTest(
-      'should emit [DashboardState.loading,DashboardState.failure] on calling',
-      build: () {
-        return sut;
-      },
-      setUp: () {
-        when(getDashboardDataFromRemoteUsecase(1)).thenAnswer(
-          (_) async => left(
-            ServerFailure(errorMessage: 'Internal Server Error'),
-          ),
-        );
-      },
-      act: (bloc) => bloc.add(const RonposDashboardEvent.getDashboardById(1)),
-      expect: () => [
-        const RonposDashboardState(
-          status: DasboardState.loading,
-          dashboardData: DashboardEntity(id: 0, appMode: ''),
-          message: '',
-        ),
-        const RonposDashboardState(
-          status: DasboardState.failure,
-          dashboardData: DashboardEntity(id: 0, appMode: ''),
-          message: 'Internal Server Error',
-        ),
-      ],
-    );
 
-    blocTest(
-      'should emit [DashboardState.loading,DashboardState.loaded] on calling',
-      build: () {
-        return sut;
-      },
-      setUp: () {
-        when(getDashboardDataFromRemoteUsecase(1)).thenAnswer(
-          (_) async => right(
-            const DashboardModel(id: 1, appMode: 'RONPOS'),
+    group('Remote', () {
+      blocTest(
+        'should emit [DashboardState.loading,DashboardState.failure] on calling',
+        build: () {
+          return sut;
+        },
+        setUp: () {
+          when(getDashboardDataFromRemoteUsecase(1)).thenAnswer(
+            (_) async => left(
+              ServerFailure(errorMessage: 'Internal Server Error'),
+            ),
+          );
+        },
+        act: (bloc) => bloc.add(
+          const RonposDashboardEvent.getDashboardFromRemoteById(1),
+        ),
+        expect: () => [
+          const RonposDashboardState(
+            status: DasboardState.loading,
+            dashboardData: DashboardEntity(id: 0, appMode: ''),
+            message: '',
           ),
-        );
-      },
-      act: (bloc) => bloc.add(const RonposDashboardEvent.getDashboardById(1)),
-      expect: () => [
-        const RonposDashboardState(
-          status: DasboardState.loading,
-          dashboardData: DashboardEntity(id: 0, appMode: ''),
-          message: '',
+          const RonposDashboardState(
+            status: DasboardState.failure,
+            dashboardData: DashboardEntity(id: 0, appMode: ''),
+            message: 'Internal Server Error',
+          ),
+        ],
+      );
+
+      blocTest(
+        'should emit [DashboardState.loading,DashboardState.loaded] on calling',
+        build: () {
+          return sut;
+        },
+        setUp: () {
+          when(getDashboardDataFromRemoteUsecase(1)).thenAnswer(
+            (_) async => right(
+              const DashboardModel(id: 1, appMode: 'RONPOS'),
+            ),
+          );
+        },
+        act: (bloc) => bloc.add(
+          const RonposDashboardEvent.getDashboardFromRemoteById(1),
         ),
-        RonposDashboardState(
-          status: DasboardState.loaded,
-          dashboardData: expectedModel.toEntity(),
-          message: '',
+        expect: () => [
+          const RonposDashboardState(
+            status: DasboardState.loading,
+            dashboardData: DashboardEntity(id: 0, appMode: ''),
+            message: '',
+          ),
+          RonposDashboardState(
+            status: DasboardState.loaded,
+            dashboardData: expectedModel.toEntity(),
+            message: '',
+          ),
+        ],
+      );
+    });
+  
+  group('Local', () {
+      blocTest(
+        'should emit [DashboardState.loading,DashboardState.failure] on calling',
+        build: () {
+          return sut;
+        },
+        setUp: () {
+          when(getDashboardDataUsecase(1)).thenAnswer(
+            (_) async => left(
+              DatabaseFailure(errorMessage: 'Data not found'),
+            ),
+          );
+        },
+        act: (bloc) => bloc.add(
+          const RonposDashboardEvent.getDashboardById(1),
         ),
-      ],
-    );
+        expect: () => [
+          const RonposDashboardState(
+            status: DasboardState.loading,
+            dashboardData: DashboardEntity(id: 0, appMode: ''),
+            message: '',
+          ),
+          const RonposDashboardState(
+            status: DasboardState.failure,
+            dashboardData: DashboardEntity(id: 0, appMode: ''),
+            message: 'Data not found',
+          ),
+        ],
+      );
+
+      blocTest(
+        'should emit [DashboardState.loading,DashboardState.loaded] on calling',
+        build: () {
+          return sut;
+        },
+        setUp: () {
+          when(getDashboardDataUsecase(1)).thenAnswer(
+            (_) async => right(
+              const DashboardModel(id: 1, appMode: 'RONPOS'),
+            ),
+          );
+        },
+        act: (bloc) => bloc.add(
+          const RonposDashboardEvent.getDashboardById(1),
+        ),
+        expect: () => [
+          const RonposDashboardState(
+            status: DasboardState.loading,
+            dashboardData: DashboardEntity(id: 0, appMode: ''),
+            message: '',
+          ),
+          RonposDashboardState(
+            status: DasboardState.loaded,
+            dashboardData: expectedModel.toEntity(),
+            message: '',
+          ),
+        ],
+      );
+    });
+  
   });
 }

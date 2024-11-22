@@ -20,32 +20,41 @@ mixin _$SentinelDashboardEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int id) getDashboardById,
+    required TResult Function(int id) getDashboardFromRemoteById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int id)? getDashboardById,
+    TResult? Function(int id)? getDashboardFromRemoteById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? getDashboardById,
+    TResult Function(int id)? getDashboardFromRemoteById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetDashboardByIdEvent value) getDashboardById,
+    required TResult Function(_GetDashboardFromRemoteByIdEvent value)
+        getDashboardFromRemoteById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetDashboardByIdEvent value)? getDashboardById,
+    TResult? Function(_GetDashboardFromRemoteByIdEvent value)?
+        getDashboardFromRemoteById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetDashboardByIdEvent value)? getDashboardById,
+    TResult Function(_GetDashboardFromRemoteByIdEvent value)?
+        getDashboardFromRemoteById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -167,6 +176,7 @@ class _$GetDashboardByIdEventImpl implements _GetDashboardByIdEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int id) getDashboardById,
+    required TResult Function(int id) getDashboardFromRemoteById,
   }) {
     return getDashboardById(id);
   }
@@ -175,6 +185,7 @@ class _$GetDashboardByIdEventImpl implements _GetDashboardByIdEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int id)? getDashboardById,
+    TResult? Function(int id)? getDashboardFromRemoteById,
   }) {
     return getDashboardById?.call(id);
   }
@@ -183,6 +194,7 @@ class _$GetDashboardByIdEventImpl implements _GetDashboardByIdEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? getDashboardById,
+    TResult Function(int id)? getDashboardFromRemoteById,
     required TResult orElse(),
   }) {
     if (getDashboardById != null) {
@@ -195,6 +207,8 @@ class _$GetDashboardByIdEventImpl implements _GetDashboardByIdEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetDashboardByIdEvent value) getDashboardById,
+    required TResult Function(_GetDashboardFromRemoteByIdEvent value)
+        getDashboardFromRemoteById,
   }) {
     return getDashboardById(this);
   }
@@ -203,6 +217,8 @@ class _$GetDashboardByIdEventImpl implements _GetDashboardByIdEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetDashboardByIdEvent value)? getDashboardById,
+    TResult? Function(_GetDashboardFromRemoteByIdEvent value)?
+        getDashboardFromRemoteById,
   }) {
     return getDashboardById?.call(this);
   }
@@ -211,6 +227,8 @@ class _$GetDashboardByIdEventImpl implements _GetDashboardByIdEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetDashboardByIdEvent value)? getDashboardById,
+    TResult Function(_GetDashboardFromRemoteByIdEvent value)?
+        getDashboardFromRemoteById,
     required TResult orElse(),
   }) {
     if (getDashboardById != null) {
@@ -232,6 +250,162 @@ abstract class _GetDashboardByIdEvent implements SentinelDashboardEvent {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetDashboardByIdEventImplCopyWith<_$GetDashboardByIdEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetDashboardFromRemoteByIdEventImplCopyWith<$Res>
+    implements $SentinelDashboardEventCopyWith<$Res> {
+  factory _$$GetDashboardFromRemoteByIdEventImplCopyWith(
+          _$GetDashboardFromRemoteByIdEventImpl value,
+          $Res Function(_$GetDashboardFromRemoteByIdEventImpl) then) =
+      __$$GetDashboardFromRemoteByIdEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$GetDashboardFromRemoteByIdEventImplCopyWithImpl<$Res>
+    extends _$SentinelDashboardEventCopyWithImpl<$Res,
+        _$GetDashboardFromRemoteByIdEventImpl>
+    implements _$$GetDashboardFromRemoteByIdEventImplCopyWith<$Res> {
+  __$$GetDashboardFromRemoteByIdEventImplCopyWithImpl(
+      _$GetDashboardFromRemoteByIdEventImpl _value,
+      $Res Function(_$GetDashboardFromRemoteByIdEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SentinelDashboardEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$GetDashboardFromRemoteByIdEventImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetDashboardFromRemoteByIdEventImpl
+    implements _GetDashboardFromRemoteByIdEvent {
+  const _$GetDashboardFromRemoteByIdEventImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'SentinelDashboardEvent.getDashboardFromRemoteById(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetDashboardFromRemoteByIdEventImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  /// Create a copy of SentinelDashboardEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetDashboardFromRemoteByIdEventImplCopyWith<
+          _$GetDashboardFromRemoteByIdEventImpl>
+      get copyWith => __$$GetDashboardFromRemoteByIdEventImplCopyWithImpl<
+          _$GetDashboardFromRemoteByIdEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int id) getDashboardById,
+    required TResult Function(int id) getDashboardFromRemoteById,
+  }) {
+    return getDashboardFromRemoteById(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int id)? getDashboardById,
+    TResult? Function(int id)? getDashboardFromRemoteById,
+  }) {
+    return getDashboardFromRemoteById?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int id)? getDashboardById,
+    TResult Function(int id)? getDashboardFromRemoteById,
+    required TResult orElse(),
+  }) {
+    if (getDashboardFromRemoteById != null) {
+      return getDashboardFromRemoteById(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetDashboardByIdEvent value) getDashboardById,
+    required TResult Function(_GetDashboardFromRemoteByIdEvent value)
+        getDashboardFromRemoteById,
+  }) {
+    return getDashboardFromRemoteById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetDashboardByIdEvent value)? getDashboardById,
+    TResult? Function(_GetDashboardFromRemoteByIdEvent value)?
+        getDashboardFromRemoteById,
+  }) {
+    return getDashboardFromRemoteById?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetDashboardByIdEvent value)? getDashboardById,
+    TResult Function(_GetDashboardFromRemoteByIdEvent value)?
+        getDashboardFromRemoteById,
+    required TResult orElse(),
+  }) {
+    if (getDashboardFromRemoteById != null) {
+      return getDashboardFromRemoteById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetDashboardFromRemoteByIdEvent
+    implements SentinelDashboardEvent {
+  const factory _GetDashboardFromRemoteByIdEvent(final int id) =
+      _$GetDashboardFromRemoteByIdEventImpl;
+
+  @override
+  int get id;
+
+  /// Create a copy of SentinelDashboardEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetDashboardFromRemoteByIdEventImplCopyWith<
+          _$GetDashboardFromRemoteByIdEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 

@@ -9,11 +9,9 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:connectivity_plus/connectivity_plus.dart' as _i895;
-import 'package:dio/dio.dart' as _i361;
 import 'package:flutter_pos/core/config/database/realm_database.dart' as _i338;
 import 'package:flutter_pos/core/config/database/realm_database_impl.dart'
     as _i147;
-import 'package:flutter_pos/core/helpers/internet_helper.dart' as _i1062;
 import 'package:flutter_pos/core/module/storage_module.dart' as _i438;
 import 'package:flutter_pos/core/module/utilities_module.dart' as _i106;
 import 'package:flutter_pos/modules/ronpos/features/dashboard/data/datasources/local/dashboard_local_datasource.dart'
@@ -68,12 +66,10 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.lazySingleton<_i895.Connectivity>(() => utilitiesModule.connectivity);
+    gh.lazySingleton<_i89.DashboardRemoteDataSource>(
+        () => _i89.DashboardRemoteDataSourceimpl());
     gh.lazySingleton<_i647.DashboardRemoteDataSource>(
         () => _i647.DashboardRemoteDataSourceimpl());
-    gh.lazySingleton<_i89.DashboardRemoteDataSource>(
-        () => _i89.DashboardRemoteDataSourceimpl(gh<_i361.Dio>()));
-    gh.lazySingleton<_i1062.InternetHelper>(
-        () => _i1062.InternetHelper(gh<_i895.Connectivity>()));
     gh.lazySingleton<_i338.RealmDatabase>(
         () => _i147.RealmDatabaseImpl(gh<_i966.Realm>()));
     gh.lazySingleton<_i1037.DashboardLocalDataSource>(

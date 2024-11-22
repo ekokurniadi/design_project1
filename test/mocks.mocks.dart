@@ -6,9 +6,9 @@
 import 'dart:async' as _i9;
 
 import 'package:dartz/dartz.dart' as _i7;
-import 'package:dio/dio.dart' as _i10;
 import 'package:dio/src/adapter.dart' as _i3;
 import 'package:dio/src/cancel_token.dart' as _i11;
+import 'package:dio/src/dio.dart' as _i10;
 import 'package:dio/src/dio_mixin.dart' as _i5;
 import 'package:dio/src/options.dart' as _i2;
 import 'package:dio/src/response.dart' as _i6;

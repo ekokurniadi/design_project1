@@ -5,6 +5,7 @@ import 'package:flutter_pos/core/config/database/realm_database.dart';
 import 'package:flutter_pos/injector.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await App.init();
   runApp(const MyApp());
 }
