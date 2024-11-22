@@ -14,7 +14,7 @@ class RealmDatabaseImpl implements RealmDatabase {
   @override
   Future<Either<Failures, T>> add<T extends RealmObject>(T item) async {
     try {
-      final result =  await _realm.writeAsync(() => _realm.add(item));
+      final result = await _realm.writeAsync(() => _realm.add(item));
       return right(result);
     } catch (e) {
       return left(DatabaseFailure(errorMessage: e.toString()));
@@ -23,12 +23,17 @@ class RealmDatabaseImpl implements RealmDatabase {
 
   @override
   Future<void> addList<T extends RealmObject>(Iterable<T> items) async {
-    await _realm.writeAsync(() => _realm.addAll(items));
+    return await _realm.writeAsync(() => _realm.addAll(items));
   }
 
   @override
-  Future<void> delete<T extends RealmObject>(T item) async {
-    await _realm.writeAsync(() => _realm.delete(item));
+  Future<bool> delete<T extends RealmObject>(T item) async {
+    try {
+      await _realm.writeAsync(() => _realm.delete(item));
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   @override
@@ -43,7 +48,14 @@ class RealmDatabaseImpl implements RealmDatabase {
 
   @override
   List<T> getAll<T extends RealmObject>() {
-    return _realm.all<T>().toList();
+    final List<T> list = [];
+    final realmResults = _realm.all<T>();
+
+    for (final schema in realmResults) {
+      list.add(schema);
+    }
+
+    return list;
   }
 
   @override

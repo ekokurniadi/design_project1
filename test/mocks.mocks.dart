@@ -5,6 +5,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i9;
 
+import 'package:connectivity_plus/connectivity_plus.dart' as _i21;
+import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart'
+    as _i22;
 import 'package:dartz/dartz.dart' as _i7;
 import 'package:dio/src/adapter.dart' as _i3;
 import 'package:dio/src/cancel_token.dart' as _i11;
@@ -1447,4 +1450,31 @@ class MockRealm extends _i1.Mock implements _i8.Realm {
         ),
         returnValueForMissingStub: null,
       );
+}
+
+/// A class which mocks [Connectivity].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockConnectivity extends _i1.Mock implements _i21.Connectivity {
+  MockConnectivity() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i9.Stream<List<_i22.ConnectivityResult>> get onConnectivityChanged =>
+      (super.noSuchMethod(
+        Invocation.getter(#onConnectivityChanged),
+        returnValue: _i9.Stream<List<_i22.ConnectivityResult>>.empty(),
+      ) as _i9.Stream<List<_i22.ConnectivityResult>>);
+
+  @override
+  _i9.Future<List<_i22.ConnectivityResult>> checkConnectivity() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #checkConnectivity,
+          [],
+        ),
+        returnValue: _i9.Future<List<_i22.ConnectivityResult>>.value(
+            <_i22.ConnectivityResult>[]),
+      ) as _i9.Future<List<_i22.ConnectivityResult>>);
 }
