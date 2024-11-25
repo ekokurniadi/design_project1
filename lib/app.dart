@@ -4,7 +4,6 @@ import 'package:injectable/injectable.dart';
 
 class App {
   const App._();
-  
 
   static Future<void> init() async {
     await dotenv.load();

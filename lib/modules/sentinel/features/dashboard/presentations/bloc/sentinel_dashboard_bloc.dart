@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pos/core/helpers/internet_helper.dart';
+import 'package:flutter_pos/injector.dart';
 import 'package:flutter_pos/modules/sentinel/features/dashboard/data/models/dashboard_model.codegen.dart';
 import 'package:flutter_pos/modules/sentinel/features/dashboard/domain/entities/dashboard_entity.codegen.dart';
 import 'package:flutter_pos/modules/sentinel/features/dashboard/domain/usecases/get_dashboard_data_from_remote_usecase.dart';
@@ -29,7 +30,7 @@ class SentinelDashboardBloc
   ) async {
     emit(state.copyWith(status: DashboardState.loading));
 
-    final result = await InternetHelper.isConnected
+    final result = await getIt<InternetHelper>().isConnected
         ? await _getDashboardDataFromRemoteUsecase(event.id)
         : await _getDashboardDataUsecase(event.id);
 

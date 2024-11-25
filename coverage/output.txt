@@ -1,0 +1,66 @@
+Reading tracefile coverage/lcov_cleaned.info.
+Found 28 entries.
+Found common filename prefix "/Users/ekokurniadi/Documents/work/silentmode/flutter_pos"
+Generating output.
+Processing file lib/core/config/database/schemas/dashboard_schema.schema.dart
+  lines=3 hit=3
+Processing file lib/core/config/database/realm_database_impl.dart
+  lines=23 hit=23
+Processing file lib/core/config/database/schemas/sentinel/sentinel_dashboard_schema.schema.dart
+  lines=4 hit=4
+Processing file lib/core/config/database/schemas/realm_schemas_list.dart
+  lines=10 hit=10
+Processing file lib/core/errors/failures.dart
+  lines=9 hit=9
+Processing file lib/core/config/envi/envi.dart
+  lines=10 hit=10
+Processing file lib/core/helpers/internet_helper.dart
+  lines=6 hit=6
+Processing file lib/core/helpers/global_helper.dart
+  lines=7 hit=7
+Processing file lib/core/module/realm_module.dart
+  lines=5 hit=5
+Processing file lib/core/module/preferences_module.dart
+  lines=2 hit=2
+Processing file lib/injector.dart
+  lines=3 hit=3
+Processing file lib/core/module/utilities_module.dart
+  lines=2 hit=2
+Processing file lib/modules/ronpos/features/dashboard/data/datasources/remote/dashboard_remote_datasource.dart
+  lines=2 hit=2
+Processing file lib/modules/ronpos/features/dashboard/data/datasources/local/dashboard_local_datasource.dart
+  lines=7 hit=7
+Processing file lib/modules/ronpos/features/dashboard/data/repository/dashboard_repository_impl.dart
+  lines=5 hit=5
+Processing file lib/modules/ronpos/features/dashboard/data/models/dashboard_model.codegen.dart
+  lines=3 hit=3
+Processing file lib/modules/ronpos/features/dashboard/domain/usecases/get_dashboard_data_usecase.dart
+  lines=3 hit=3
+Processing file lib/modules/ronpos/features/dashboard/domain/usecases/get_dashboard_data_from_remote_usecase.dart
+  lines=3 hit=3
+Processing file lib/modules/ronpos/features/dashboard/presentations/bloc/ronpos_dashboard_state.dart
+  lines=1 hit=1
+Processing file lib/modules/ronpos/features/dashboard/presentations/bloc/ronpos_dashboard_bloc.dart
+  lines=24 hit=24
+Processing file lib/modules/sentinel/features/dashboard/data/datasources/remote/dashboard_remote_datasource.dart
+  lines=2 hit=0
+Processing file lib/modules/sentinel/features/dashboard/data/datasources/local/dashboard_local_datasource.dart
+  lines=7 hit=0
+Processing file lib/modules/sentinel/features/dashboard/data/repository/dashboard_repository_impl.dart
+  lines=5 hit=0
+Processing file lib/modules/sentinel/features/dashboard/data/models/dashboard_model.codegen.dart
+  lines=6 hit=0
+Processing file lib/modules/sentinel/features/dashboard/domain/usecases/get_dashboard_data_usecase.dart
+  lines=3 hit=0
+Processing file lib/modules/sentinel/features/dashboard/domain/usecases/get_dashboard_data_from_remote_usecase.dart
+  lines=3 hit=0
+Processing file lib/modules/sentinel/features/dashboard/presentations/bloc/sentinel_dashboard_state.dart
+  lines=1 hit=0
+Processing file lib/modules/sentinel/features/dashboard/presentations/bloc/sentinel_dashboard_bloc.dart
+  lines=15 hit=0
+Overall coverage rate:
+  source files: 28
+  lines.......: 75.9% (132 of 174 lines)
+  functions...: no data found
+Message summary:
+  no messages were reported

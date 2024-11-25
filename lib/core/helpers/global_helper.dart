@@ -1,5 +1,4 @@
-class GlobalHelper {
-  const GlobalHelper._();
+sealed class GlobalHelper {
   static bool isEmpty(dynamic value) {
     if (value == '' ||
         value == null ||
@@ -8,6 +7,17 @@ class GlobalHelper {
         value == 0) {
       return true;
     } else {
+      return false;
+    }
+  }
+
+  static bool isEmptyList(List<dynamic>? value) {
+    if (value == null) {
+      return true;
+    } else {
+      if (value.isEmpty) {
+        return true;
+      }
       return false;
     }
   }

@@ -1,25 +1,25 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class Envi {
-  const Envi._();
-
-  static String getString(String key) {
+  String getString(String key) {
     return dotenv.get(key);
   }
 
-  static bool getBool(String key) {
+  bool getBool(String key) {
     return dotenv.getBool(key);
   }
 
-  static double getDouble(String key) {
+  double getDouble(String key) {
     return dotenv.getDouble(key);
   }
 
-  static int getInt(String key) {
+  int getInt(String key) {
     return dotenv.getInt(key);
   }
 
-  static String? getStringNullable<T>(String key) {
+  String? getStringNullable<T>(String key) {
     return dotenv.maybeGet(key);
   }
 }

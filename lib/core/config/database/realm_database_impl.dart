@@ -8,7 +8,7 @@ import 'package:realm/realm.dart';
 
 @LazySingleton(as: RealmDatabase)
 class RealmDatabaseImpl implements RealmDatabase {
-  const RealmDatabaseImpl(this._realm);
+  RealmDatabaseImpl(this._realm);
   final Realm _realm;
 
   @override

@@ -12,7 +12,10 @@ import 'package:connectivity_plus/connectivity_plus.dart' as _i895;
 import 'package:flutter_pos/core/config/database/realm_database.dart' as _i338;
 import 'package:flutter_pos/core/config/database/realm_database_impl.dart'
     as _i147;
-import 'package:flutter_pos/core/module/storage_module.dart' as _i438;
+import 'package:flutter_pos/core/config/envi/envi.dart' as _i275;
+import 'package:flutter_pos/core/helpers/internet_helper.dart' as _i1062;
+import 'package:flutter_pos/core/module/preferences_module.dart' as _i709;
+import 'package:flutter_pos/core/module/realm_module.dart' as _i46;
 import 'package:flutter_pos/core/module/utilities_module.dart' as _i106;
 import 'package:flutter_pos/modules/ronpos/features/dashboard/data/datasources/local/dashboard_local_datasource.dart'
     as _i1012;
@@ -58,18 +61,22 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    final storageModule = _$StorageModule();
+    final preferencesModule = _$PreferencesModule();
     final utilitiesModule = _$UtilitiesModule();
-    gh.singleton<_i966.Realm>(() => storageModule.realm);
+    final realmModule = _$RealmModule();
+    gh.singleton<_i275.Envi>(() => _i275.Envi());
     await gh.lazySingletonAsync<_i460.SharedPreferences>(
-      () => storageModule.sharedPreferences,
+      () => preferencesModule.sharedPreferences,
       preResolve: true,
     );
     gh.lazySingleton<_i895.Connectivity>(() => utilitiesModule.connectivity);
     gh.lazySingleton<_i89.DashboardRemoteDataSource>(
         () => _i89.DashboardRemoteDataSourceimpl());
+    gh.singleton<_i966.Realm>(() => realmModule.provideRealm(gh<_i275.Envi>()));
     gh.lazySingleton<_i647.DashboardRemoteDataSource>(
         () => _i647.DashboardRemoteDataSourceimpl());
+    gh.lazySingleton<_i1062.InternetHelper>(
+        () => _i1062.InternetHelper(gh<_i895.Connectivity>()));
     gh.lazySingleton<_i338.RealmDatabase>(
         () => _i147.RealmDatabaseImpl(gh<_i966.Realm>()));
     gh.lazySingleton<_i1037.DashboardLocalDataSource>(
@@ -108,6 +115,8 @@ extension GetItInjectableX on _i174.GetIt {
   }
 }
 
-class _$StorageModule extends _i438.StorageModule {}
+class _$PreferencesModule extends _i709.PreferencesModule {}
 
 class _$UtilitiesModule extends _i106.UtilitiesModule {}
+
+class _$RealmModule extends _i46.RealmModule {}
