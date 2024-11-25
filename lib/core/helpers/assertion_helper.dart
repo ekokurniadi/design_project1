@@ -1,4 +1,4 @@
-sealed class GlobalHelper {
+sealed class AssertionHelper {
   static bool isEmpty(dynamic value) {
     if (value == '' ||
         value == null ||

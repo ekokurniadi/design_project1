@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_pos/core/config/database/realm_database.dart';
 import 'package:flutter_pos/core/config/database/schemas/sentinel/sentinel_dashboard_schema.schema.dart';
 import 'package:flutter_pos/core/errors/failures.dart';
-import 'package:flutter_pos/core/helpers/global_helper.dart';
+import 'package:flutter_pos/core/helpers/assertion_helper.dart';
 import 'package:flutter_pos/modules/sentinel/features/dashboard/data/models/dashboard_model.codegen.dart';
 import 'package:injectable/injectable.dart';
 
@@ -20,10 +20,10 @@ class DashboardLocalDataSourceImpl implements DashboardLocalDataSource {
   ) async {
     try {
       final result = _database.find<SentinelDashboardSchema, int>(id);
-      if (GlobalHelper.isEmpty(result)) {
-        return right(result!.schemaToModel());
+      if (AssertionHelper.isEmpty(result)) {
+        return left(DatabaseFailure(errorMessage: 'Data not found'));
       }
-      return left(DatabaseFailure(errorMessage: 'Data not found'));
+      return right(result!.schemaToModel());
     } catch (e) {
       return left(DatabaseFailure(errorMessage: e.toString()));
     }
