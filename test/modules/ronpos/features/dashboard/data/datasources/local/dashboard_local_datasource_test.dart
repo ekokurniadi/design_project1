@@ -19,7 +19,7 @@ void main() {
   });
 
   setUpAll(() async {
-    await TestHelper.setupAll();
+    await TestModule.setup();
   });
 
   group('Ronpos DashboardLocalDataSource', () {

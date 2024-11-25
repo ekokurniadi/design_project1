@@ -13,7 +13,7 @@ void main() {
   late RealmSchemas realmSchemas;
 
   setUpAll(() async {
-    await TestHelper.setupAll();
+    await TestModule.setup();
     envi = MockEnvi();
     realmSchemas = RealmSchemas(envi);
   });

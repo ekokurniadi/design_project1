@@ -103,8 +103,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-lint_staged:
-  'lib/**.dart': flutter analyze --fatal-infos --fatal-warnings
 
 coverage:
   exclude:

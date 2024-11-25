@@ -27,7 +27,7 @@ void main() {
   });
 
   setUpAll(() async {
-    await TestHelper.setupAll();
+    await TestModule.setup();
   });
 
   group('RonposDashboardBloc', () {
@@ -37,7 +37,7 @@ void main() {
 
     group('Remote', () {
       blocTest(
-        'should emit [DashboardState.loading,DashboardState.failure] on calling',
+        '''should emit [DashboardState.loading,DashboardState.failure] on calling''',
         build: () {
           return sut;
         },
@@ -94,10 +94,10 @@ void main() {
         ],
       );
     });
-  
-  group('Local', () {
+
+    group('Local', () {
       blocTest(
-        'should emit [DashboardState.loading,DashboardState.failure] on calling',
+        '''should emit [DashboardState.loading,DashboardState.failure] on calling''',
         build: () {
           return sut;
         },
@@ -154,6 +154,5 @@ void main() {
         ],
       );
     });
-  
   });
 }

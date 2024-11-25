@@ -65,7 +65,7 @@ void main() {
     });
 
 
-    test('should return DashboardModel when getDashboardDataFromRemote success ',
+    test('should return DashboardModel when getDashboardDataFromRemote success',
         () async {
       //arrange
       when(remoteDataSource.getDashboardData(id)).thenAnswer(
