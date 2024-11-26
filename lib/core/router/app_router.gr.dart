@@ -27,6 +27,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SentinelDashboardPage(),
       );
     },
+    UserManagementRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const UserManagementPage(),
+      );
+    },
   };
 }
 
@@ -54,6 +60,20 @@ class SentinelDashboardRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SentinelDashboardRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [UserManagementPage]
+class UserManagementRoute extends PageRouteInfo<void> {
+  const UserManagementRoute({List<PageRouteInfo>? children})
+      : super(
+          UserManagementRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'UserManagementRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

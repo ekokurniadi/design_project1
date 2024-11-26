@@ -31,6 +31,18 @@ import 'package:flutter_pos/modules/ronpos/features/dashboard/domain/usecases/ge
     as _i756;
 import 'package:flutter_pos/modules/ronpos/features/dashboard/presentations/bloc/ronpos_dashboard_bloc.dart'
     as _i1025;
+import 'package:flutter_pos/modules/ronpos/features/user_management/data/datasources/local/user_management_local_datasource.dart'
+    as _i145;
+import 'package:flutter_pos/modules/ronpos/features/user_management/data/datasources/remote/user_management_remote_datasource.dart'
+    as _i736;
+import 'package:flutter_pos/modules/ronpos/features/user_management/data/repository/user_management_repository_impl.dart'
+    as _i276;
+import 'package:flutter_pos/modules/ronpos/features/user_management/domain/repository/user_management_repository.dart'
+    as _i106;
+import 'package:flutter_pos/modules/ronpos/features/user_management/domain/usecases/get_all_users_usecase.dart'
+    as _i357;
+import 'package:flutter_pos/modules/ronpos/features/user_management/domain/usecases/get_user_by_id_usecase.dart'
+    as _i167;
 import 'package:flutter_pos/modules/sentinel/features/dashboard/data/datasources/local/dashboard_local_datasource.dart'
     as _i1037;
 import 'package:flutter_pos/modules/sentinel/features/dashboard/data/datasources/remote/dashboard_remote_datasource.dart'
@@ -72,13 +84,26 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i895.Connectivity>(() => utilitiesModule.connectivity);
     gh.lazySingleton<_i89.DashboardRemoteDataSource>(
         () => _i89.DashboardRemoteDataSourceimpl());
+    gh.lazySingleton<_i145.UserManagementLocalDataSource>(
+        () => const _i145.UserManagementLocalDataSourceImpl());
     gh.singleton<_i966.Realm>(() => realmModule.provideRealm(gh<_i275.Envi>()));
     gh.lazySingleton<_i647.DashboardRemoteDataSource>(
         () => _i647.DashboardRemoteDataSourceimpl());
+    gh.lazySingleton<_i736.UserManagementRemoteDataSource>(
+        () => const _i736.UserManagementRemoteDataSourceImpl());
     gh.lazySingleton<_i1062.InternetHelper>(
         () => _i1062.InternetHelper(gh<_i895.Connectivity>()));
     gh.lazySingleton<_i338.RealmDatabase>(
         () => _i147.RealmDatabaseImpl(gh<_i966.Realm>()));
+    gh.lazySingleton<_i106.UserManagementRepository>(
+        () => _i276.UserManagementRepositoryImpl(
+              gh<_i736.UserManagementRemoteDataSource>(),
+              gh<_i145.UserManagementLocalDataSource>(),
+            ));
+    gh.factory<_i167.GetUserByIdUseCase>(
+        () => _i167.GetUserByIdUseCase(gh<_i106.UserManagementRepository>()));
+    gh.factory<_i357.GetAllUsersUseCase>(
+        () => _i357.GetAllUsersUseCase(gh<_i106.UserManagementRepository>()));
     gh.lazySingleton<_i1037.DashboardLocalDataSource>(
         () => _i1037.DashboardLocalDataSourceImpl(gh<_i338.RealmDatabase>()));
     gh.lazySingleton<_i1012.DashboardLocalDataSource>(

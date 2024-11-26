@@ -1,0 +1,1 @@
+dart pub global activate --source git https://github.com/ekokurniadi/mica_cli.git

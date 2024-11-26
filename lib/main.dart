@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_pos/app.dart';
 import 'package:flutter_pos/core/config/database/realm_database.dart';
+import 'package:flutter_pos/core/helpers/locale_helper.dart';
+import 'package:flutter_pos/gen/strings.g.dart';
 import 'package:flutter_pos/injector.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  LocaleSettings.useDeviceLocale();
   await App.init();
-  runApp(const MyApp());
+
+  runApp(
+    TranslationProvider(
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,7 +26,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Ronpos',
+      locale: TranslationProvider.of(context).flutterLocale,
+      supportedLocales: AppLocaleUtils.supportedLocales,
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -37,7 +49,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const LocaleProvider(
+        child: MyHomePage(title: ''),
+      ),
     );
   }
 }
@@ -76,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     getAppMode();
+    LocaleHelper.init();
     super.initState();
   }
 
@@ -95,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(t.title),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -121,6 +136,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          final locale = LocaleHelper.getLocale();
+          LocaleHelper.setLocale(
+            context,
+            locale == AppLocale.en ? AppLocale.ms : AppLocale.en,
+          );
+        },
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
