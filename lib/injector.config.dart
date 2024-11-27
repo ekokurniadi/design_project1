@@ -88,7 +88,7 @@ extension GetItInjectableX on _i174.GetIt {
     final preferencesModule = _$PreferencesModule();
     final utilitiesModule = _$UtilitiesModule();
     final realmModule = _$RealmModule();
-    gh.singleton<_i275.Envi>(() => _i275.Envi());
+    gh.lazySingleton<_i275.Envi>(() => _i275.Envi());
     await gh.lazySingletonAsync<_i460.SharedPreferences>(
       () => preferencesModule.sharedPreferences,
       preResolve: true,
@@ -100,7 +100,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i89.DashboardRemoteDataSourceimpl());
     gh.lazySingleton<_i145.UserManagementLocalDataSource>(
         () => const _i145.UserManagementLocalDataSourceImpl());
-    gh.singleton<_i966.Realm>(() => realmModule.provideRealm(gh<_i275.Envi>()));
+    gh.lazySingleton<_i966.Realm>(
+        () => realmModule.provideRealm(gh<_i275.Envi>()));
     gh.lazySingleton<_i647.DashboardRemoteDataSource>(
         () => _i647.DashboardRemoteDataSourceimpl());
     gh.lazySingleton<_i736.UserManagementRemoteDataSource>(

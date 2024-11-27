@@ -5,12 +5,13 @@ import 'package:realm/realm.dart';
 
 @module
 abstract class RealmModule {
-  @singleton
+  @lazySingleton
   Realm provideRealm(Envi envi) {
     final schemas = RealmSchemas(envi).getSchemas;
     final config = Configuration.local(
       schemas,
       schemaVersion: schemas.length,
+      shouldDeleteIfMigrationNeeded: true,
     );
     return Realm(config);
   }

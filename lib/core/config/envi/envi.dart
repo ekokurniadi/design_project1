@@ -1,7 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@lazySingleton
 class Envi {
   String getString(String key) {
     return dotenv.get(key);
