@@ -9,7 +9,8 @@ abstract class UserManagementRemoteDataSource {
 }
 
 @LazySingleton(as: UserManagementRemoteDataSource)
-class UserManagementRemoteDataSourceImpl implements UserManagementRemoteDataSource {
+class UserManagementRemoteDataSourceImpl
+    implements UserManagementRemoteDataSource {
   const UserManagementRemoteDataSourceImpl();
 
   @override
@@ -17,10 +18,11 @@ class UserManagementRemoteDataSourceImpl implements UserManagementRemoteDataSour
     //TODO: implements getUserById
     throw UnimplementedError();
   }
+
   @override
-  Future<Either<Failures, List<UserManagementModel>>> getAllUsers(int page) async {
+  Future<Either<Failures, List<UserManagementModel>>> getAllUsers(
+      int page) async {
     //TODO: implements getAllUsers
     throw UnimplementedError();
   }
-
 }

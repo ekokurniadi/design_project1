@@ -858,6 +858,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "20.0.0"
+  realm_studio_manager:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: a60821aa30eb0a1821f59ff01392302931c0fab7
+      url: "https://github.com/ekokurniadi/realm_studio_manager.git"
+    source: git
+    version: "0.0.1"
   recase:
     dependency: transitive
     description:

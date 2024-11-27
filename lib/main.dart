@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_pos/app.dart';
-import 'package:flutter_pos/core/config/database/realm_database.dart';
 import 'package:flutter_pos/core/helpers/locale_helper.dart';
 import 'package:flutter_pos/gen/strings.g.dart';
 import 'package:flutter_pos/injector.dart';
+
+import 'package:realm/realm.dart';
+import 'package:realm_studio_manager/realm_studio_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,7 +49,7 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        useMaterial3: false,
       ),
       home: const LocaleProvider(
         child: MyHomePage(title: ''),
@@ -83,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    getIt<RealmDatabase>().dispose();
+    // getIt<RealmDatabase>().dispose();
     super.dispose();
   }
 
@@ -143,6 +145,15 @@ class _MyHomePageState extends State<MyHomePage> {
           LocaleHelper.setLocale(
             context,
             locale == AppLocale.en ? AppLocale.ms : AppLocale.en,
+          );
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => RealmStudioManager(
+                realm: getIt<Realm>(),
+              ),
+            ),
           );
         },
       ),

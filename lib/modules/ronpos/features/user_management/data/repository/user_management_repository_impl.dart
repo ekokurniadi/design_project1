@@ -9,10 +9,10 @@ import 'package:injectable/injectable.dart';
 @LazySingleton(as: UserManagementRepository)
 class UserManagementRepositoryImpl implements UserManagementRepository {
   const UserManagementRepositoryImpl(
-  this._userManagementRemoteDataSource,
-  this._userManagementLocalDataSource,
+    this._userManagementRemoteDataSource,
+    this._userManagementLocalDataSource,
   );
-  
+
   final UserManagementRemoteDataSource _userManagementRemoteDataSource;
   final UserManagementLocalDataSource _userManagementLocalDataSource;
 
@@ -21,8 +21,11 @@ class UserManagementRepositoryImpl implements UserManagementRepository {
     //TODO: implements getUserById
     throw UnimplementedError();
   }
+
   @override
-  Future<Either<Failures, List<UserManagementModel>>> getAllUsers(int page) async {
+  Future<Either<Failures, List<UserManagementModel>>> getAllUsers(
+    int page,
+  ) async {
     //TODO: implements getAllUsers
     throw UnimplementedError();
   }

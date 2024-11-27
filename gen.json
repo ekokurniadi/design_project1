@@ -1,9 +1,9 @@
 {
     "flutter_package_name": "flutter_pos",
-    "feature_name": "user_management",
+    "feature_name": "products",
     "generated_path":"modules/ronpos/features",
     "entity": {
-        "name": "UserManagement",
+        "name": "Product",
         "properties": [
             {
                 "name": "id",
@@ -19,17 +19,17 @@
     },
     "usecases": [
         {
-            "name": "GetUserById",
-            "return_type": "UserManagementModel",
+            "name": "GetProductById",
+            "return_type": "ProductModel",
             "param": "int",
             "param_name": "id"
         },
         {
-            "name": "GetAllUsers",
-            "return_type": "List<UserManagementModel>",
+            "name": "GetAllProducts",
+            "return_type": "List<ProductModel>",
             "param": "int",
             "param_name": "page"
         }
     ],
-    "datasources":["remote","local"]
+    "datasources":["local","remote"]
 }

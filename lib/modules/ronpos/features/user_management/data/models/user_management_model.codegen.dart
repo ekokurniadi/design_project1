@@ -10,5 +10,6 @@ class UserManagementModel with _$UserManagementModel {
     required String name,
   }) = _UserManagementModel;
 
-  factory UserManagementModel.fromJson(Map<String, dynamic> json) => _$UserManagementModelFromJson(json);
+  factory UserManagementModel.fromJson(Map<String, dynamic> json) =>
+      _$UserManagementModelFromJson(json);
 }

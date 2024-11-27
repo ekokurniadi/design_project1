@@ -50,6 +50,9 @@ dependencies:
   intl: ^0.19.0
   json_serializable: ^6.9.0
   realm: ^20.0.0
+  realm_studio_manager:
+    git:
+      url: https://github.com/ekokurniadi/realm_studio_manager.git
   responsive_builder: ^0.7.0
   responsive_framework: ^0.1.9
   rxdart: ^0.28.0

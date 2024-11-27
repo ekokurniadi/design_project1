@@ -6,11 +6,11 @@ import 'package:flutter_pos/modules/ronpos/features/user_management/domain/repos
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetUserByIdUseCase implements UseCase<UserManagementModel, int>{
+class GetUserByIdUseCase implements UseCase<UserManagementModel, int> {
   const GetUserByIdUseCase(this._repository);
   final UserManagementRepository _repository;
   @override
-  Future<Either<Failures, UserManagementModel>> call(int id) async{
+  Future<Either<Failures, UserManagementModel>> call(int id) async {
     return await _repository.getUserById(id);
   }
 }

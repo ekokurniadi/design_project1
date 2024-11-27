@@ -9,7 +9,8 @@ abstract class UserManagementLocalDataSource {
 }
 
 @LazySingleton(as: UserManagementLocalDataSource)
-class UserManagementLocalDataSourceImpl implements UserManagementLocalDataSource {
+class UserManagementLocalDataSourceImpl
+    implements UserManagementLocalDataSource {
   const UserManagementLocalDataSourceImpl();
 
   @override
@@ -17,10 +18,12 @@ class UserManagementLocalDataSourceImpl implements UserManagementLocalDataSource
     //TODO: implements getUserById
     throw UnimplementedError();
   }
+
   @override
-  Future<Either<Failures, List<UserManagementModel>>> getAllUsers(int page) async {
+  Future<Either<Failures, List<UserManagementModel>>> getAllUsers(
+    int page,
+  ) async {
     //TODO: implements getAllUsers
     throw UnimplementedError();
   }
-
 }

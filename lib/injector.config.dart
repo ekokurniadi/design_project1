@@ -31,6 +31,18 @@ import 'package:flutter_pos/modules/ronpos/features/dashboard/domain/usecases/ge
     as _i756;
 import 'package:flutter_pos/modules/ronpos/features/dashboard/presentations/bloc/ronpos_dashboard_bloc.dart'
     as _i1025;
+import 'package:flutter_pos/modules/ronpos/features/products/data/datasources/local/products_local_datasource.dart'
+    as _i748;
+import 'package:flutter_pos/modules/ronpos/features/products/data/datasources/remote/products_remote_datasource.dart'
+    as _i178;
+import 'package:flutter_pos/modules/ronpos/features/products/data/repository/products_repository_impl.dart'
+    as _i983;
+import 'package:flutter_pos/modules/ronpos/features/products/domain/repository/products_repository.dart'
+    as _i190;
+import 'package:flutter_pos/modules/ronpos/features/products/domain/usecases/get_all_products_usecase.dart'
+    as _i761;
+import 'package:flutter_pos/modules/ronpos/features/products/domain/usecases/get_product_by_id_usecase.dart'
+    as _i159;
 import 'package:flutter_pos/modules/ronpos/features/user_management/data/datasources/local/user_management_local_datasource.dart'
     as _i145;
 import 'package:flutter_pos/modules/ronpos/features/user_management/data/datasources/remote/user_management_remote_datasource.dart'
@@ -82,6 +94,8 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.lazySingleton<_i895.Connectivity>(() => utilitiesModule.connectivity);
+    gh.lazySingleton<_i178.ProductsRemoteDataSource>(
+        () => const _i178.ProductsRemoteDataSourceImpl());
     gh.lazySingleton<_i89.DashboardRemoteDataSource>(
         () => _i89.DashboardRemoteDataSourceimpl());
     gh.lazySingleton<_i145.UserManagementLocalDataSource>(
@@ -91,10 +105,17 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i647.DashboardRemoteDataSourceimpl());
     gh.lazySingleton<_i736.UserManagementRemoteDataSource>(
         () => const _i736.UserManagementRemoteDataSourceImpl());
+    gh.lazySingleton<_i748.ProductsLocalDataSource>(
+        () => const _i748.ProductsLocalDataSourceImpl());
     gh.lazySingleton<_i1062.InternetHelper>(
         () => _i1062.InternetHelper(gh<_i895.Connectivity>()));
     gh.lazySingleton<_i338.RealmDatabase>(
         () => _i147.RealmDatabaseImpl(gh<_i966.Realm>()));
+    gh.lazySingleton<_i190.ProductsRepository>(
+        () => _i983.ProductsRepositoryImpl(
+              gh<_i748.ProductsLocalDataSource>(),
+              gh<_i178.ProductsRemoteDataSource>(),
+            ));
     gh.lazySingleton<_i106.UserManagementRepository>(
         () => _i276.UserManagementRepositoryImpl(
               gh<_i736.UserManagementRemoteDataSource>(),
@@ -108,6 +129,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1037.DashboardLocalDataSourceImpl(gh<_i338.RealmDatabase>()));
     gh.lazySingleton<_i1012.DashboardLocalDataSource>(
         () => _i1012.DashboardLocalDataSourceImpl(gh<_i338.RealmDatabase>()));
+    gh.factory<_i761.GetAllProductsUseCase>(
+        () => _i761.GetAllProductsUseCase(gh<_i190.ProductsRepository>()));
+    gh.factory<_i159.GetProductByIdUseCase>(
+        () => _i159.GetProductByIdUseCase(gh<_i190.ProductsRepository>()));
     gh.lazySingleton<_i683.DashboardRepository>(
         () => _i177.DashboardRepositoryImpl(
               gh<_i1037.DashboardLocalDataSource>(),
