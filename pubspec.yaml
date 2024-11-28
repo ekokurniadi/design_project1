@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  alice: ^0.4.2
   auto_route: ^8.3.0
   bloc_concurrency: ^0.2.5
   collection: ^1.18.0
@@ -35,13 +36,14 @@ dependencies:
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
   dio: ^5.7.0
+  draggable_float_widget: ^0.1.0
   equatable: ^2.0.5
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
   flutter_bloc: ^8.1.6
   flutter_dotenv: ^5.2.1
+  flutter_localizations:
+    sdk: flutter
   flutter_screenutil: ^5.9.3
   freezed: ^2.5.7
   freezed_annotation: ^2.4.4
@@ -49,13 +51,16 @@ dependencies:
   injectable: ^2.5.0
   intl: ^0.19.0
   json_serializable: ^6.9.0
+  json_view: ^0.4.2
   realm: ^20.0.0
   realm_studio_manager:
     git:
       url: https://github.com/ekokurniadi/realm_studio_manager.git
   responsive_builder: ^0.7.0
   responsive_framework: ^0.1.9
-  rxdart: ^0.28.0
+  rxdart: ^0.27.0
+  sentry_dio: ^8.10.1
+  sentry_flutter: ^8.10.1
   shared_preferences: ^2.3.3
   slang: ^4.2.1
   slang_flutter: ^4.2.0
@@ -69,6 +74,8 @@ dev_dependencies:
     sdk: flutter
   husky: ^0.1.7
   injectable_generator: ^2.6.2
+  integration_test:
+    sdk: flutter
   lint_staged: ^0.5.1
   mockito: ^5.4.4
   realm_common: ^20.0.0

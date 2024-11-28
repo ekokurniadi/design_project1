@@ -1,23 +1,43 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_pos/app.dart';
+import 'package:flutter_pos/core/config/envi/envi.dart';
 import 'package:flutter_pos/core/helpers/locale_helper.dart';
 import 'package:flutter_pos/gen/strings.g.dart';
 import 'package:flutter_pos/injector.dart';
 
 import 'package:realm/realm.dart';
 import 'package:realm_studio_manager/realm_studio_manager.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  LocaleSettings.useDeviceLocale();
-  await App.init();
+  runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      LocaleSettings.useDeviceLocale();
+      await App.init();
 
-  runApp(
-    TranslationProvider(
-      child: const MyApp(),
-    ),
+      await SentryFlutter.init(
+        (option) {
+          option.dsn = getIt<Envi>().getString('SENTRY_DSN');
+          option.attachScreenshot = true;
+          option.captureFailedRequests = true;
+        },
+        appRunner: () => runApp(
+          TranslationProvider(
+            child: const SentryWidget(
+              child: MyApp(),
+            ),
+          ),
+        ),
+      );
+    },
+    (exception, stackTrace) async {
+      await Sentry.captureException(exception, stackTrace: stackTrace);
+    },
   );
 }
 
@@ -134,6 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
+              key: const ValueKey('modeKey'),
               'You running on App mode $mode',
             ),
           ],
