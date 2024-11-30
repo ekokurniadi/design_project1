@@ -1,8 +1,3 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_pos/core/router/app_router.dart';
 
-final List<AutoRoute> sentinelRoutes = [
-  AutoRoute(
-    page: SentinelDashboardRoute.page,
-  ),
-];
+final List<AutoRoute> sentinelRoutes = [];

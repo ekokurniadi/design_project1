@@ -14,12 +14,33 @@ class LocaleHelper {
     }
   }
 
+  /// [LocaleHelper.init()] initializes the application's localization.
+  ///
+  /// It reads the saved locale if it has been set previously,  
+  /// or automatically sets the locale if no saved locale is found.
   static void init() async {
     final preference = await SharedPreferences.getInstance();
     final locale = preference.getString('locale');
     LocaleSettings.setLocaleRaw(locale ?? 'en');
   }
-
+  
+/// Sets the application's locale and updates related settings.
+///
+/// This method is responsible for updating the app's locale to 
+/// the specified [AppLocale]. 
+/// It stores the selected locale in shared preferences for persistence, 
+/// updates the current locale settings,
+/// and refreshes the UI to reflect the changes.
+///
+/// Parameters:
+/// - [context]: The [BuildContext] used to refresh the UI with the new locale.
+/// - [locale]: The [AppLocale] to set as the application's active locale.
+///
+/// Steps:
+/// 1. Saves the selected locale to shared preferences using the `locale` key.
+/// 2. Updates the current locale through [LocaleSettings.setLocale].
+/// 3. Refreshes the UI by invoking [LocaleProvider.refreshLocale] with the 
+/// provided context.
   static void setLocale(BuildContext context, AppLocale locale) async {
     final preference = await SharedPreferences.getInstance();
     preference.setString('locale', locale.name);

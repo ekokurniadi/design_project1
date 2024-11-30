@@ -22,14 +22,14 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
-    sort_child_properties_last: false
+    sort_child_properties_last: true
     camel_case_types: true
     unawaited_futures: false
     always_specify_types: false
     constant_identifier_names: true
     prefer_final_fields: true
     prefer_final_in_for_each: true
-    prefer_final_locals: false
+    prefer_final_locals: true
     prefer_single_quotes: true
     require_trailing_commas: true
     always_use_package_imports: true
@@ -49,9 +49,6 @@ analyzer:
     - "**/*.config.dart"
     - "**/*.mocks.dart"
   errors:
-    sdk_version_since: ignore
-    invalid_annotation_target: ignore
     slash_for_doc_comments: ignore
-    deprecated_member_use: ignore
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

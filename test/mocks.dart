@@ -10,6 +10,7 @@ import 'package:flutter_pos/modules/ronpos/features/dashboard/domain/usecases/ge
 import 'package:flutter_pos/modules/ronpos/features/dashboard/domain/usecases/get_dashboard_data_usecase.dart';
 import 'package:mockito/annotations.dart';
 import 'package:realm/realm.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @GenerateMocks([
@@ -25,6 +26,8 @@ import 'package:shared_preferences/shared_preferences.dart';
   DotEnv,
   SharedPreferences,
   Connectivity,
+  InterceptorsWrapper,
+  SentryClient,
 ])
 
 void main() {}

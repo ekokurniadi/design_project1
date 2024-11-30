@@ -3,6 +3,7 @@ import 'package:flutter_pos/core/router/app_router.dart';
 
 final List<AutoRoute> ronposRoutes = [
   AutoRoute(
+    initial: true,
     page: RonposDashboardRoute.page,
   ),
 ];

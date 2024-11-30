@@ -1,3 +1,4 @@
+// coverage:ignore-file
 import 'package:alice/alice.dart';
 import 'package:draggable_float_widget/draggable_float_widget.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 Alice alice = Alice(showNotification: false);
 
-class DebuggingScaffold extends StatelessWidget {
-  DebuggingScaffold({
+class InspectorScaffold extends StatelessWidget {
+  InspectorScaffold({
     super.key,
     required this.child,
     required this.navigatorKey,
@@ -55,7 +56,7 @@ class DebuggingScaffold extends StatelessWidget {
                                 children: [
                                   ListTile(
                                     leading: const Icon(Icons.public),
-                                    title: const Text('HTTP Monitor'),
+                                    title: const Text('HTTP Inspector'),
                                     onTap: () {
                                       Navigator.pop(
                                         navigatorKey.currentContext!,
@@ -105,6 +106,8 @@ class DebuggingScaffold extends StatelessWidget {
                                         MaterialPageRoute(
                                           builder: (context) => Scaffold(
                                             appBar: AppBar(
+                                              backgroundColor:
+                                                  Colors.deepPurple,
                                               title: const Text(
                                                 'Preferences View',
                                               ),

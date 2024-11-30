@@ -1,4 +1,3 @@
-class UrlConstant {
-  const UrlConstant._();
+sealed class UrlConstant {
   static const String urlOrder = '/orders';
 }

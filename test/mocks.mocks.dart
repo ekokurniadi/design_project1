@@ -5,37 +5,47 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i9;
 
-import 'package:connectivity_plus/connectivity_plus.dart' as _i24;
+import 'package:connectivity_plus/connectivity_plus.dart' as _i25;
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart'
-    as _i25;
+    as _i26;
 import 'package:dartz/dartz.dart' as _i7;
 import 'package:dio/src/adapter.dart' as _i3;
-import 'package:dio/src/cancel_token.dart' as _i11;
-import 'package:dio/src/dio.dart' as _i10;
+import 'package:dio/src/cancel_token.dart' as _i12;
+import 'package:dio/src/dio.dart' as _i11;
+import 'package:dio/src/dio_exception.dart' as _i27;
 import 'package:dio/src/dio_mixin.dart' as _i5;
 import 'package:dio/src/options.dart' as _i2;
 import 'package:dio/src/response.dart' as _i6;
 import 'package:dio/src/transformer.dart' as _i4;
-import 'package:flutter_dotenv/flutter_dotenv.dart' as _i22;
-import 'package:flutter_pos/core/config/database/realm_database.dart' as _i19;
-import 'package:flutter_pos/core/config/envi/envi.dart' as _i21;
-import 'package:flutter_pos/core/errors/failures.dart' as _i13;
+import 'package:flutter_dotenv/flutter_dotenv.dart' as _i23;
+import 'package:flutter_pos/core/config/database/realm_database.dart' as _i20;
+import 'package:flutter_pos/core/config/envi/envi.dart' as _i22;
+import 'package:flutter_pos/core/errors/failures.dart' as _i14;
 import 'package:flutter_pos/modules/ronpos/features/dashboard/data/datasources/local/dashboard_local_datasource.dart'
-    as _i15;
-import 'package:flutter_pos/modules/ronpos/features/dashboard/data/datasources/remote/dashboard_remote_datasource.dart'
-    as _i12;
-import 'package:flutter_pos/modules/ronpos/features/dashboard/data/models/dashboard_model.codegen.dart'
-    as _i14;
-import 'package:flutter_pos/modules/ronpos/features/dashboard/domain/repository/dashboard_repository.dart'
     as _i16;
-import 'package:flutter_pos/modules/ronpos/features/dashboard/domain/usecases/get_dashboard_data_from_remote_usecase.dart'
+import 'package:flutter_pos/modules/ronpos/features/dashboard/data/datasources/remote/dashboard_remote_datasource.dart'
+    as _i13;
+import 'package:flutter_pos/modules/ronpos/features/dashboard/data/models/dashboard_model.codegen.dart'
+    as _i15;
+import 'package:flutter_pos/modules/ronpos/features/dashboard/domain/repository/dashboard_repository.dart'
     as _i17;
-import 'package:flutter_pos/modules/ronpos/features/dashboard/domain/usecases/get_dashboard_data_usecase.dart'
+import 'package:flutter_pos/modules/ronpos/features/dashboard/domain/usecases/get_dashboard_data_from_remote_usecase.dart'
     as _i18;
+import 'package:flutter_pos/modules/ronpos/features/dashboard/domain/usecases/get_dashboard_data_usecase.dart'
+    as _i19;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i20;
+import 'package:mockito/src/dummies.dart' as _i21;
 import 'package:realm/realm.dart' as _i8;
-import 'package:shared_preferences/src/shared_preferences_legacy.dart' as _i23;
+import 'package:sentry/src/hint.dart' as _i30;
+import 'package:sentry/src/metrics/metric.dart' as _i35;
+import 'package:sentry/src/protocol.dart' as _i10;
+import 'package:sentry/src/protocol/sentry_feedback.dart' as _i34;
+import 'package:sentry/src/scope.dart' as _i29;
+import 'package:sentry/src/sentry_client.dart' as _i28;
+import 'package:sentry/src/sentry_envelope.dart' as _i32;
+import 'package:sentry/src/sentry_trace_context_header.dart' as _i31;
+import 'package:sentry/src/sentry_user_feedback.dart' as _i33;
+import 'package:shared_preferences/src/shared_preferences_legacy.dart' as _i24;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -182,10 +192,20 @@ class _FakeRealm_12 extends _i1.SmartFake implements _i8.Realm {
         );
 }
 
+class _FakeSentryId_13 extends _i1.SmartFake implements _i10.SentryId {
+  _FakeSentryId_13(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [Dio].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDio extends _i1.Mock implements _i10.Dio {
+class MockDio extends _i1.Mock implements _i11.Dio {
   MockDio() {
     _i1.throwOnMissingStub(this);
   }
@@ -270,7 +290,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i2.Options? options,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -303,7 +323,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     Uri? uri, {
     Object? data,
     _i2.Options? options,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -335,7 +355,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i2.Options? options,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
@@ -371,7 +391,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     Uri? uri, {
     Object? data,
     _i2.Options? options,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
@@ -406,7 +426,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i2.Options? options,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
@@ -445,7 +465,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     Uri? uri, {
     Object? data,
     _i2.Options? options,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
@@ -483,7 +503,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i2.Options? options,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
@@ -522,7 +542,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     Uri? uri, {
     Object? data,
     _i2.Options? options,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
@@ -560,7 +580,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i2.Options? options,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
@@ -599,7 +619,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     Uri? uri, {
     Object? data,
     _i2.Options? options,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
@@ -637,7 +657,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i2.Options? options,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -670,7 +690,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     Uri? uri, {
     Object? data,
     _i2.Options? options,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -702,7 +722,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     dynamic savePath, {
     _i2.ProgressCallback? onReceiveProgress,
     Map<String, dynamic>? queryParameters,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     bool? deleteOnError = true,
     String? lengthHeader = r'content-length',
     Object? data,
@@ -752,7 +772,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     Uri? uri,
     dynamic savePath, {
     _i2.ProgressCallback? onReceiveProgress,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     bool? deleteOnError = true,
     String? lengthHeader = r'content-length',
     Object? data,
@@ -800,7 +820,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
     String? url, {
     Object? data,
     Map<String, dynamic>? queryParameters,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.Options? options,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
@@ -839,7 +859,7 @@ class MockDio extends _i1.Mock implements _i10.Dio {
   _i9.Future<_i6.Response<T>> requestUri<T>(
     Uri? uri, {
     Object? data,
-    _i11.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.Options? options,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
@@ -893,13 +913,13 @@ class MockDio extends _i1.Mock implements _i10.Dio {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockDashboardRemoteDataSource extends _i1.Mock
-    implements _i12.DashboardRemoteDataSource {
+    implements _i13.DashboardRemoteDataSource {
   MockDashboardRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>> getDashboardData(
+  _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>> getDashboardData(
           int? id) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -907,28 +927,28 @@ class MockDashboardRemoteDataSource extends _i1.Mock
           [id],
         ),
         returnValue:
-            _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>>.value(
-                _FakeEither_5<_i13.Failures, _i14.DashboardModel>(
+            _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>>.value(
+                _FakeEither_5<_i14.Failures, _i15.DashboardModel>(
           this,
           Invocation.method(
             #getDashboardData,
             [id],
           ),
         )),
-      ) as _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>>);
+      ) as _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>>);
 }
 
 /// A class which mocks [DashboardLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockDashboardLocalDataSource extends _i1.Mock
-    implements _i15.DashboardLocalDataSource {
+    implements _i16.DashboardLocalDataSource {
   MockDashboardLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>> getDashboardData(
+  _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>> getDashboardData(
           int? id) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -936,28 +956,28 @@ class MockDashboardLocalDataSource extends _i1.Mock
           [id],
         ),
         returnValue:
-            _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>>.value(
-                _FakeEither_5<_i13.Failures, _i14.DashboardModel>(
+            _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>>.value(
+                _FakeEither_5<_i14.Failures, _i15.DashboardModel>(
           this,
           Invocation.method(
             #getDashboardData,
             [id],
           ),
         )),
-      ) as _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>>);
+      ) as _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>>);
 }
 
 /// A class which mocks [DashboardRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockDashboardRepository extends _i1.Mock
-    implements _i16.DashboardRepository {
+    implements _i17.DashboardRepository {
   MockDashboardRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>> getDashboardData(
+  _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>> getDashboardData(
           int? id) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -965,46 +985,46 @@ class MockDashboardRepository extends _i1.Mock
           [id],
         ),
         returnValue:
-            _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>>.value(
-                _FakeEither_5<_i13.Failures, _i14.DashboardModel>(
+            _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>>.value(
+                _FakeEither_5<_i14.Failures, _i15.DashboardModel>(
           this,
           Invocation.method(
             #getDashboardData,
             [id],
           ),
         )),
-      ) as _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>>);
+      ) as _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>>);
 
   @override
-  _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>>
+  _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>>
       getDashboardDataFromRemote(int? id) => (super.noSuchMethod(
             Invocation.method(
               #getDashboardDataFromRemote,
               [id],
             ),
             returnValue: _i9
-                .Future<_i7.Either<_i13.Failures, _i14.DashboardModel>>.value(
-                _FakeEither_5<_i13.Failures, _i14.DashboardModel>(
+                .Future<_i7.Either<_i14.Failures, _i15.DashboardModel>>.value(
+                _FakeEither_5<_i14.Failures, _i15.DashboardModel>(
               this,
               Invocation.method(
                 #getDashboardDataFromRemote,
                 [id],
               ),
             )),
-          ) as _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>>);
+          ) as _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>>);
 }
 
 /// A class which mocks [GetDashboardDataFromRemoteUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetDashboardDataFromRemoteUsecase extends _i1.Mock
-    implements _i17.GetDashboardDataFromRemoteUsecase {
+    implements _i18.GetDashboardDataFromRemoteUsecase {
   MockGetDashboardDataFromRemoteUsecase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>> call(
+  _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>> call(
           int? params) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1012,28 +1032,28 @@ class MockGetDashboardDataFromRemoteUsecase extends _i1.Mock
           [params],
         ),
         returnValue:
-            _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>>.value(
-                _FakeEither_5<_i13.Failures, _i14.DashboardModel>(
+            _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>>.value(
+                _FakeEither_5<_i14.Failures, _i15.DashboardModel>(
           this,
           Invocation.method(
             #call,
             [params],
           ),
         )),
-      ) as _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>>);
+      ) as _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>>);
 }
 
 /// A class which mocks [GetDashboardDataUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetDashboardDataUsecase extends _i1.Mock
-    implements _i18.GetDashboardDataUsecase {
+    implements _i19.GetDashboardDataUsecase {
   MockGetDashboardDataUsecase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>> call(
+  _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>> call(
           int? params) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1041,21 +1061,21 @@ class MockGetDashboardDataUsecase extends _i1.Mock
           [params],
         ),
         returnValue:
-            _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>>.value(
-                _FakeEither_5<_i13.Failures, _i14.DashboardModel>(
+            _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>>.value(
+                _FakeEither_5<_i14.Failures, _i15.DashboardModel>(
           this,
           Invocation.method(
             #call,
             [params],
           ),
         )),
-      ) as _i9.Future<_i7.Either<_i13.Failures, _i14.DashboardModel>>);
+      ) as _i9.Future<_i7.Either<_i14.Failures, _i15.DashboardModel>>);
 }
 
 /// A class which mocks [RealmDatabase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRealmDatabase extends _i1.Mock implements _i19.RealmDatabase {
+class MockRealmDatabase extends _i1.Mock implements _i20.RealmDatabase {
   MockRealmDatabase() {
     _i1.throwOnMissingStub(this);
   }
@@ -1070,22 +1090,22 @@ class MockRealmDatabase extends _i1.Mock implements _i19.RealmDatabase {
       ) as List<T>);
 
   @override
-  _i9.Future<_i7.Either<_i13.Failures, T>> add<T extends _i8.RealmObject>(
+  _i9.Future<_i7.Either<_i14.Failures, T>> add<T extends _i8.RealmObject>(
           T? item) =>
       (super.noSuchMethod(
         Invocation.method(
           #add,
           [item],
         ),
-        returnValue: _i9.Future<_i7.Either<_i13.Failures, T>>.value(
-            _FakeEither_5<_i13.Failures, T>(
+        returnValue: _i9.Future<_i7.Either<_i14.Failures, T>>.value(
+            _FakeEither_5<_i14.Failures, T>(
           this,
           Invocation.method(
             #add,
             [item],
           ),
         )),
-      ) as _i9.Future<_i7.Either<_i13.Failures, T>>);
+      ) as _i9.Future<_i7.Either<_i14.Failures, T>>);
 
   @override
   _i9.Future<void> addList<T extends _i8.RealmObject>(Iterable<T>? items) =>
@@ -1099,22 +1119,22 @@ class MockRealmDatabase extends _i1.Mock implements _i19.RealmDatabase {
       ) as _i9.Future<void>);
 
   @override
-  _i9.Future<_i7.Either<_i13.Failures, T>> update<T extends _i8.RealmObject>(
+  _i9.Future<_i7.Either<_i14.Failures, T>> update<T extends _i8.RealmObject>(
           T? item) =>
       (super.noSuchMethod(
         Invocation.method(
           #update,
           [item],
         ),
-        returnValue: _i9.Future<_i7.Either<_i13.Failures, T>>.value(
-            _FakeEither_5<_i13.Failures, T>(
+        returnValue: _i9.Future<_i7.Either<_i14.Failures, T>>.value(
+            _FakeEither_5<_i14.Failures, T>(
           this,
           Invocation.method(
             #update,
             [item],
           ),
         )),
-      ) as _i9.Future<_i7.Either<_i13.Failures, T>>);
+      ) as _i9.Future<_i7.Either<_i14.Failures, T>>);
 
   @override
   _i9.Future<void> delete<T extends _i8.RealmObject>(T? item) =>
@@ -1217,7 +1237,7 @@ class MockRealm extends _i1.Mock implements _i8.Realm {
           [object],
           {#update: update},
         ),
-        returnValue: _i20.dummyValue<T>(
+        returnValue: _i21.dummyValue<T>(
           this,
           Invocation.method(
             #add,
@@ -1266,7 +1286,7 @@ class MockRealm extends _i1.Mock implements _i8.Realm {
           #write,
           [writeCallback],
         ),
-        returnValue: _i20.dummyValue<T>(
+        returnValue: _i21.dummyValue<T>(
           this,
           Invocation.method(
             #write,
@@ -1320,8 +1340,8 @@ class MockRealm extends _i1.Mock implements _i8.Realm {
             cancellationToken,
           ],
         ),
-        returnValue: _i20.ifNotNull(
-              _i20.dummyValueOrNull<T>(
+        returnValue: _i21.ifNotNull(
+              _i21.dummyValueOrNull<T>(
                 this,
                 Invocation.method(
                   #writeAsync,
@@ -1458,7 +1478,7 @@ class MockRealm extends _i1.Mock implements _i8.Realm {
 /// A class which mocks [Envi].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockEnvi extends _i1.Mock implements _i21.Envi {
+class MockEnvi extends _i1.Mock implements _i22.Envi {
   MockEnvi() {
     _i1.throwOnMissingStub(this);
   }
@@ -1469,7 +1489,7 @@ class MockEnvi extends _i1.Mock implements _i21.Envi {
           #getString,
           [key],
         ),
-        returnValue: _i20.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.method(
             #getString,
@@ -1516,7 +1536,7 @@ class MockEnvi extends _i1.Mock implements _i21.Envi {
 /// A class which mocks [DotEnv].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDotEnv extends _i1.Mock implements _i22.DotEnv {
+class MockDotEnv extends _i1.Mock implements _i23.DotEnv {
   MockDotEnv() {
     _i1.throwOnMissingStub(this);
   }
@@ -1553,7 +1573,7 @@ class MockDotEnv extends _i1.Mock implements _i22.DotEnv {
           [name],
           {#fallback: fallback},
         ),
-        returnValue: _i20.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.method(
             #get,
@@ -1619,7 +1639,7 @@ class MockDotEnv extends _i1.Mock implements _i22.DotEnv {
   @override
   _i9.Future<void> load({
     String? fileName = r'.env',
-    _i22.Parser? parser = const _i22.Parser(),
+    _i23.Parser? parser = const _i23.Parser(),
     Map<String, String>? mergeWith = const {},
     bool? isOptional = false,
   }) =>
@@ -1641,7 +1661,7 @@ class MockDotEnv extends _i1.Mock implements _i22.DotEnv {
   @override
   void testLoad({
     String? fileInput = r'',
-    _i22.Parser? parser = const _i22.Parser(),
+    _i23.Parser? parser = const _i23.Parser(),
     Map<String, String>? mergeWith = const {},
   }) =>
       super.noSuchMethod(
@@ -1670,7 +1690,7 @@ class MockDotEnv extends _i1.Mock implements _i22.DotEnv {
 /// A class which mocks [SharedPreferences].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPreferences extends _i1.Mock implements _i23.SharedPreferences {
+class MockSharedPreferences extends _i1.Mock implements _i24.SharedPreferences {
   MockSharedPreferences() {
     _i1.throwOnMissingStub(this);
   }
@@ -1851,26 +1871,295 @@ class MockSharedPreferences extends _i1.Mock implements _i23.SharedPreferences {
 /// A class which mocks [Connectivity].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockConnectivity extends _i1.Mock implements _i24.Connectivity {
+class MockConnectivity extends _i1.Mock implements _i25.Connectivity {
   MockConnectivity() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i9.Stream<List<_i25.ConnectivityResult>> get onConnectivityChanged =>
+  _i9.Stream<List<_i26.ConnectivityResult>> get onConnectivityChanged =>
       (super.noSuchMethod(
         Invocation.getter(#onConnectivityChanged),
-        returnValue: _i9.Stream<List<_i25.ConnectivityResult>>.empty(),
-      ) as _i9.Stream<List<_i25.ConnectivityResult>>);
+        returnValue: _i9.Stream<List<_i26.ConnectivityResult>>.empty(),
+      ) as _i9.Stream<List<_i26.ConnectivityResult>>);
 
   @override
-  _i9.Future<List<_i25.ConnectivityResult>> checkConnectivity() =>
+  _i9.Future<List<_i26.ConnectivityResult>> checkConnectivity() =>
       (super.noSuchMethod(
         Invocation.method(
           #checkConnectivity,
           [],
         ),
-        returnValue: _i9.Future<List<_i25.ConnectivityResult>>.value(
-            <_i25.ConnectivityResult>[]),
-      ) as _i9.Future<List<_i25.ConnectivityResult>>);
+        returnValue: _i9.Future<List<_i26.ConnectivityResult>>.value(
+            <_i26.ConnectivityResult>[]),
+      ) as _i9.Future<List<_i26.ConnectivityResult>>);
+}
+
+/// A class which mocks [InterceptorsWrapper].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockInterceptorsWrapper extends _i1.Mock
+    implements _i5.InterceptorsWrapper {
+  MockInterceptorsWrapper() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void onRequest(
+    _i2.RequestOptions? options,
+    _i5.RequestInterceptorHandler? handler,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onRequest,
+          [
+            options,
+            handler,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onResponse(
+    _i6.Response<dynamic>? response,
+    _i5.ResponseInterceptorHandler? handler,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onResponse,
+          [
+            response,
+            handler,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onError(
+    _i27.DioException? err,
+    _i5.ErrorInterceptorHandler? handler,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            err,
+            handler,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [SentryClient].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSentryClient extends _i1.Mock implements _i28.SentryClient {
+  MockSentryClient() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i9.Future<_i10.SentryId> captureEvent(
+    _i10.SentryEvent? event, {
+    _i29.Scope? scope,
+    dynamic stackTrace,
+    _i30.Hint? hint,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureEvent,
+          [event],
+          {
+            #scope: scope,
+            #stackTrace: stackTrace,
+            #hint: hint,
+          },
+        ),
+        returnValue: _i9.Future<_i10.SentryId>.value(_FakeSentryId_13(
+          this,
+          Invocation.method(
+            #captureEvent,
+            [event],
+            {
+              #scope: scope,
+              #stackTrace: stackTrace,
+              #hint: hint,
+            },
+          ),
+        )),
+      ) as _i9.Future<_i10.SentryId>);
+
+  @override
+  _i9.Future<_i10.SentryId> captureException(
+    dynamic throwable, {
+    dynamic stackTrace,
+    _i29.Scope? scope,
+    _i30.Hint? hint,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureException,
+          [throwable],
+          {
+            #stackTrace: stackTrace,
+            #scope: scope,
+            #hint: hint,
+          },
+        ),
+        returnValue: _i9.Future<_i10.SentryId>.value(_FakeSentryId_13(
+          this,
+          Invocation.method(
+            #captureException,
+            [throwable],
+            {
+              #stackTrace: stackTrace,
+              #scope: scope,
+              #hint: hint,
+            },
+          ),
+        )),
+      ) as _i9.Future<_i10.SentryId>);
+
+  @override
+  _i9.Future<_i10.SentryId> captureMessage(
+    String? formatted, {
+    _i10.SentryLevel? level,
+    String? template,
+    List<dynamic>? params,
+    _i29.Scope? scope,
+    _i30.Hint? hint,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureMessage,
+          [formatted],
+          {
+            #level: level,
+            #template: template,
+            #params: params,
+            #scope: scope,
+            #hint: hint,
+          },
+        ),
+        returnValue: _i9.Future<_i10.SentryId>.value(_FakeSentryId_13(
+          this,
+          Invocation.method(
+            #captureMessage,
+            [formatted],
+            {
+              #level: level,
+              #template: template,
+              #params: params,
+              #scope: scope,
+              #hint: hint,
+            },
+          ),
+        )),
+      ) as _i9.Future<_i10.SentryId>);
+
+  @override
+  _i9.Future<_i10.SentryId> captureTransaction(
+    _i10.SentryTransaction? transaction, {
+    _i29.Scope? scope,
+    _i31.SentryTraceContextHeader? traceContext,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureTransaction,
+          [transaction],
+          {
+            #scope: scope,
+            #traceContext: traceContext,
+          },
+        ),
+        returnValue: _i9.Future<_i10.SentryId>.value(_FakeSentryId_13(
+          this,
+          Invocation.method(
+            #captureTransaction,
+            [transaction],
+            {
+              #scope: scope,
+              #traceContext: traceContext,
+            },
+          ),
+        )),
+      ) as _i9.Future<_i10.SentryId>);
+
+  @override
+  _i9.Future<_i10.SentryId?> captureEnvelope(_i32.SentryEnvelope? envelope) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureEnvelope,
+          [envelope],
+        ),
+        returnValue: _i9.Future<_i10.SentryId?>.value(),
+      ) as _i9.Future<_i10.SentryId?>);
+
+  @override
+  _i9.Future<void> captureUserFeedback(_i33.SentryUserFeedback? userFeedback) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureUserFeedback,
+          [userFeedback],
+        ),
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
+
+  @override
+  _i9.Future<_i10.SentryId> captureFeedback(
+    _i34.SentryFeedback? feedback, {
+    _i29.Scope? scope,
+    _i30.Hint? hint,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureFeedback,
+          [feedback],
+          {
+            #scope: scope,
+            #hint: hint,
+          },
+        ),
+        returnValue: _i9.Future<_i10.SentryId>.value(_FakeSentryId_13(
+          this,
+          Invocation.method(
+            #captureFeedback,
+            [feedback],
+            {
+              #scope: scope,
+              #hint: hint,
+            },
+          ),
+        )),
+      ) as _i9.Future<_i10.SentryId>);
+
+  @override
+  _i9.Future<_i10.SentryId> captureMetrics(
+          Map<int, Iterable<_i35.Metric>>? metricsBuckets) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureMetrics,
+          [metricsBuckets],
+        ),
+        returnValue: _i9.Future<_i10.SentryId>.value(_FakeSentryId_13(
+          this,
+          Invocation.method(
+            #captureMetrics,
+            [metricsBuckets],
+          ),
+        )),
+      ) as _i9.Future<_i10.SentryId>);
+
+  @override
+  void close() => super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 }
