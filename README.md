@@ -6,7 +6,7 @@ A few resources to get you started if this is your first Flutter project with cl
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-- [The Clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [Design Pattern: The Clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - [Effective Dart: Write code with Dart Best practices](https://dart.dev/effective-dart)
 
 For help getting started with Flutter development, view the
