@@ -61,6 +61,10 @@ samples, guidance on mobile development, and a full API reference.
     analysis_option.yaml     # Linter configuration
           
 ```
+
+## Feature Structure Details
+<img width="965" alt="image" src="https://github.com/user-attachments/assets/0cc93e26-f1a6-48b7-911d-11b032c27b2a">
+
 ## Installation
 
 ### Clone project
