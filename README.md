@@ -55,3 +55,9 @@ samples, guidance on mobile development, and a full API reference.
     analysis_option.yaml     # Linter configuration
           
 ```
+## Installation
+### Clone project
+```bash
+    git clone https://github.com/ekokurniadi/design_project1.git
+    cd design_project1
+```
