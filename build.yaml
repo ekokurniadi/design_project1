@@ -8,6 +8,7 @@ targets:
       - lib/**.dart
       - core/**.dart
       - test/**.dart
+      - pubspec.yaml
     builders:
       source_gen|combining_builder:
         options:

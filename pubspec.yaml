@@ -24,6 +24,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.0.16
   freezed_annotation: ^2.4.4
   get_it: ^8.0.2
   injectable: ^2.5.0
@@ -48,6 +49,7 @@ dev_dependencies:
   auto_route_generator: ^8.1.0
   bloc_test: ^9.1.7
   build_runner: ^2.4.13
+  flutter_gen_runner: ^5.8.0
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
@@ -66,6 +68,7 @@ flutter:
   assets:
     - .env
     - assets/translations/
+    - assets/icons/
 
   fonts:
     - family: Inter
@@ -75,3 +78,14 @@ flutter:
 coverage:
   exclude:
     - "lib/**/*.schema.realm.dart"
+
+flutter_gen:
+  output: lib/gen/assets
+  assets:
+    outputs:
+      directory_path_enabled: true
+    exclude:
+      - assets/translations/**
+      - assets/fonts
+  integrations:
+    flutter_svg: true

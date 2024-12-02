@@ -2,6 +2,7 @@
 import 'package:alice/alice.dart';
 import 'package:draggable_float_widget/draggable_float_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pos/gen/assets/assets.gen.dart';
 import 'package:flutter_pos/injector.dart';
 import 'package:json_view/json_view.dart';
 import 'package:realm/realm.dart';
@@ -55,7 +56,8 @@ class InspectorScaffold extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   ListTile(
-                                    leading: const Icon(Icons.public),
+                                    // leading: const Icon(Icons.public),
+                                    leading: Assets.icons.addProduct.svg(),
                                     title: const Text('HTTP Inspector'),
                                     onTap: () {
                                       Navigator.pop(
