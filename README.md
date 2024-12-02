@@ -71,19 +71,19 @@ samples, guidance on mobile development, and a full API reference.
 
 ### Clone project
 ```bash
-    git clone https://github.com/ekokurniadi/design_project1.git
-    cd design_project1
+git clone https://github.com/ekokurniadi/design_project1.git
+cd design_project1
 ```
 
 ### Download project dependencies
 ```bash
-    flutter pub get
+flutter pub get
 ```
 
 ### Running the project
 #### Using terminal
 ```bash
-    flutter run
+flutter run
 ```
 #### Using debug console
 ```
