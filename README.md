@@ -13,6 +13,12 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+## Prerequisites
+- Flutter SDK version 3.24.5
+- Dart SDK version 3.5.4
+- Xcode for ios development
+- Android Studio for android development
+
 ## Project Structure
 ```bash
 
