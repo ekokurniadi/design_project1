@@ -102,4 +102,7 @@ flutter test
 ```bash
 flutter test integration_test
 ```
-
+## Generate Localizations
+```bash
+bash sh/localization.sh
+```
