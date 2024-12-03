@@ -23,6 +23,7 @@ samples, guidance on mobile development, and a full API reference.
 ## Visual Studio Code Extension
 - [Pubspec Assist](https://marketplace.visualstudio.com/items?itemName=jeroen-meijer.pubspec-assist) : Easily add and update dependencies to your Dart and Flutter project
 - [bloc](https://marketplace.visualstudio.com/items?itemName=FelixAngelov.bloc) : Support for the bloc library and provides tools for effectively creating blocs for both Flutter and AngularDart apps.
+- [Flutter](https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter) : Flutter support and debugger for Visual Studio Code.
 
 ## Project Structure
 ```bash
