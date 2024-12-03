@@ -23,12 +23,12 @@ samples, guidance on mobile development, and a full API reference.
 ```bash
 
     flutter_pos/
-      android                # Native Platform Android Configuration 
-      ios                    # Native Platform IOS Configuration 
-      macos                  # Native Platform Desktop MacOS Configuration 
-      windows                # Native Platform Desktop Windows Configuration 
-      linux                  # Native Platform Desktop Linux Configuration
-      web                    # Native Platform Web Configuration
+      android/               # Native Platform Android Configuration 
+      ios/                   # Native Platform IOS Configuration 
+      macos/                 # Native Platform Desktop MacOS Configuration 
+      windows/               # Native Platform Desktop Windows Configuration 
+      linux/                 # Native Platform Desktop Linux Configuration
+      web/                   # Native Platform Web Configuration
       pubspec.yaml           # Project dependencies and configuration
       pubspec.lock           # Project dependencies lock file
       custom_library/        # Custom Library
