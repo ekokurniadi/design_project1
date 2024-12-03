@@ -102,7 +102,7 @@ class _MyAppState extends State<MyApp> {
           },
           routerDelegate: appRouter.delegate(),
           routeInformationParser: appRouter.defaultRouteParser(),
-          theme: AppTheme.theme,
+          theme: AppTheme.theme(),
         );
       },
     );
