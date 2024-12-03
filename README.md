@@ -18,6 +18,11 @@ samples, guidance on mobile development, and a full API reference.
 - Dart SDK version 3.5.4
 - Xcode for ios development
 - Android Studio for android development
+- Visual Studio Code
+
+## Visual Studio Code Extension
+- [Pubspec Assist](https://marketplace.visualstudio.com/items?itemName=jeroen-meijer.pubspec-assist) : Easily add and update dependencies to your Dart and Flutter project
+- [bloc](https://marketplace.visualstudio.com/items?itemName=FelixAngelov.bloc) : Support for the bloc library and provides tools for effectively creating blocs for both Flutter and AngularDart apps.
 
 ## Project Structure
 ```bash
