@@ -32,9 +32,7 @@ samples, guidance on mobile development, and a full API reference.
       android/               # Native Platform Android Configuration 
       ios/                   # Native Platform IOS Configuration 
       macos/                 # Native Platform Desktop MacOS Configuration 
-      windows/               # Native Platform Desktop Windows Configuration 
-      linux/                 # Native Platform Desktop Linux Configuration
-      web/                   # Native Platform Web Configuration
+      windows/               # Native Platform Desktop Windows Configuration
       pubspec.yaml           # Project dependencies and configuration
       pubspec.lock           # Project dependencies lock file
       custom_library/        # Custom Library
