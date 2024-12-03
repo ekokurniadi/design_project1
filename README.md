@@ -75,6 +75,11 @@ git clone https://github.com/ekokurniadi/design_project1.git
 cd design_project1
 ```
 
+### Create .env file
+```bash
+cp .env.example .env
+```
+
 ### Download project dependencies
 ```bash
 flutter pub get
