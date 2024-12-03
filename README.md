@@ -80,7 +80,7 @@ cd design_project1
 flutter pub get
 ```
 
-### Running the project
+## Running the project
 #### Using terminal
 ```bash
 flutter run
@@ -89,3 +89,12 @@ flutter run
 ```
 Press F5 on your keyboard
 ```
+## Running Unit Test
+```bash
+flutter test
+```
+## Running Integration Test
+```bash
+flutter test integration_test
+```
+
